@@ -1,1 +1,1 @@
-coming soon 
+Expense TrackerA lightweight and simple application to track your daily cash flow and manage personal spending habits.FeaturesAdd Expenses: Record item names, costs, dates, and categories.Delete Entries: Remove wrong or old items easily.View Totals: See your total money spent right away.How to UseOpen the app or script on your device.Type in the cost, pick a category, and add a short note.Click save or press enter to update your total balance
