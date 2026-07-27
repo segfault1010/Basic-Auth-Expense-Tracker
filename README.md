@@ -1,163 +1,255 @@
-# 💰 Expense Tracker (TypeScript)
+# 💰 Basic Auth Expense Tracker
 
-A simple and lightweight Expense Tracker built with **TypeScript** that helps users record, manage, and analyze their daily expenses. This project demonstrates TypeScript fundamentals, object-oriented programming, and basic expense management logic.
+A full-stack Expense Tracker application built with **React, TypeScript, Express, Prisma, SQLite, and JWT Authentication**. Users can securely register, log in, and manage their personal expenses through a clean and simple interface.
+
+---
 
 ## 🚀 Features
 
-- ➕ Add new expenses
-- 🗑️ Delete expenses
-- ✏️ Update existing expenses
-- 📋 View all recorded expenses
-- 📊 Calculate total expenses
-- 🔍 Search expenses by category or description
-- 📅 Track expense date
-- ✅ Strong type safety using TypeScript
+- 🔐 User Registration & Login
+- 🔑 JWT-based Authentication
+- 🛡 Protected Routes
+- ➕ Add Expenses
+- 📋 View Personal Expenses
+- ❌ Delete Expenses
+- 💾 SQLite Database with Prisma ORM
+- ✅ Input Validation using Zod
+- ⚡ Fast frontend powered by Vite
+- 🎨 Responsive UI
 
-## 🛠️ Tech Stack
+---
 
-- **Language:** TypeScript
-- **Runtime:** Node.js
-- **Package Manager:** npm
-- **Compiler:** TypeScript Compiler (tsc)
+## 🛠 Tech Stack
 
-## 📁 Project Structure
+### Frontend
+- React
+- TypeScript
+- Vite
+- React Router
+- React Hook Form
+- Axios
+- Tailwind CSS
+- Zod
+
+### Backend
+- Node.js
+- Express
+- TypeScript
+- Prisma ORM
+- SQLite
+- JWT
+- bcryptjs
+- Zod
+
+---
+
+## 📂 Project Structure
 
 ```
-expense-tracker/
+Basic-Auth-Expense-Tracker
 │
-├── src/
-│   ├── models/
-│   ├── services/
-│   ├── utils/
-│   ├── types/
-│   └── index.ts
+├── client/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   └── services/
+│   └── package.json
 │
-├── dist/
-├── package.json
-├── tsconfig.json
-├── README.md
-└── .gitignore
+├── server/
+│   ├── prisma/
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   └── routes/
+│   └── package.json
+│
+└── README.md
 ```
+
+---
 
 ## 📦 Installation
 
-Clone the repository:
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/expense-tracker.git
+git clone https://github.com/your-username/Basic-Auth-Expense-Tracker.git
+
+cd Basic-Auth-Expense-Tracker
 ```
 
-Navigate to the project folder:
+---
+
+### 2. Install Dependencies
+
+#### Client
 
 ```bash
-cd expense-tracker
-```
-
-Install dependencies:
-
-```bash
+cd client
 npm install
 ```
 
-## ▶️ Running the Project
-
-Compile TypeScript:
+#### Server
 
 ```bash
-npm run build
+cd ../server
+npm install
 ```
 
-Run the application:
+---
 
-```bash
-npm start
+## ⚙ Environment Variables
+
+Create a `.env` file inside the `server` folder.
+
+```env
+JWT_SECRET=your_secret_key
 ```
 
-Or during development:
+---
+
+## 🗄 Setup Database
+
+Generate the Prisma client
 
 ```bash
+npm run prisma:generate
+```
+
+Create the SQLite database
+
+```bash
+npm run prisma:push
+```
+
+---
+
+## ▶ Running the Application
+
+### Start Backend
+
+```bash
+cd server
+
 npm run dev
 ```
 
-## Example Usage
+Runs on:
 
-```text
-1. Add Expense
-2. View Expenses
-3. Update Expense
-4. Delete Expense
-5. View Total Expenses
-6. Exit
-
-Choose an option:
+```
+http://localhost:5000
 ```
 
-## Expense Model
+---
 
-```typescript
-interface Expense {
-  id: number;
-  title: string;
-  amount: number;
-  category: string;
-  date: Date;
-}
-```
-
-## 🎯 Learning Objectives
-
-This project covers:
-
-- TypeScript basics
-- Interfaces
-- Classes
-- Modules
-- Arrays and Objects
-- CRUD operations
-- Functions
-- Type Safety
-- Project structure
-
-## 📌 Future Improvements
-
-- Expense categories with icons
-- Monthly expense reports
-- Budget tracking
-- Data persistence (JSON/SQLite)
-- Charts and analytics
-- Export to CSV
-- User authentication
-- Web interface using React
-
-## 🤝 Contributing
-
-Contributions are welcome!
-
-1. Fork the repository
-2. Create a feature branch
+### Start Frontend
 
 ```bash
-git checkout -b feature-name
+cd client
+
+npm run dev
 ```
 
-3. Commit your changes
+Runs on:
 
-```bash
-git commit -m "Add new feature"
+```
+http://localhost:5173
 ```
 
-4. Push to your branch
+---
 
-```bash
-git push origin feature-name
-```
+## 🔒 Authentication Flow
 
-5. Open a Pull Request
+1. User registers with email and password.
+2. Password is securely hashed using bcrypt.
+3. User logs in.
+4. Server returns a JWT token.
+5. Client stores the token.
+6. Protected API requests include the JWT.
+7. Middleware verifies the token before granting access.
 
-## 📄 License
+---
 
-This project is licensed under the MIT License.
+## 📡 API Endpoints
+
+### Authentication
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/auth/register` | Register a new user |
+| POST | `/auth/login` | Login and receive JWT |
+
+### Expenses
+
+| Method | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/expenses` | Get all expenses |
+| POST | `/expenses` | Create a new expense |
+| DELETE | `/expenses/:id` | Delete an expense |
+
+---
+
+## 🗃 Database Schema
+
+### User
+
+- id
+- email
+- password
+- createdAt
+
+### Expense
+
+- id
+- amount
+- category
+- description
+- date
+- userId
+- createdAt
+
+---
+
+## 🔐 Security Features
+
+- Password hashing with bcrypt
+- JWT Authentication
+- Protected API routes
+- User-specific expense access
+- Request validation using Zod
+
+---
+
+## 📸 Future Improvements
+
+- ✏ Edit expenses
+- 📊 Expense analytics
+- 📅 Filter by date
+- 📂 Category management
+- 🌙 Dark mode
+- 📈 Charts and reports
+- 💵 Monthly budgeting
+- ☁ Deploy with PostgreSQL
+
+---
 
 ## 👨‍💻 Author
 
-Built with ❤️ using TypeScript.
+**Dharmendra**
+
+Built as a learning project to understand:
+
+- Authentication with JWT
+- REST APIs
+- React + Express integration
+- Prisma ORM
+- SQLite
+- TypeScript
+- Full-stack application development
+
+---
+
+## 📄 License
+
+This project is intended for educational purposes and is open for learning and modification.
